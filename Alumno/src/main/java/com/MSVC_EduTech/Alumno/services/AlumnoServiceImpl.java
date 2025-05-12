@@ -17,4 +17,9 @@ public class AlumnoServiceImpl {
     public List<Alumno> findAll(){
         return this.alumnoRepository.findAll();
     }
+
+    @Override
+    public Alumno findById(Long id){
+        re
+    }
 }
