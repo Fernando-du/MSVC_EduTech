@@ -8,5 +8,4 @@ import java.util.List;
 
 @Repository
 public interface AlumnoRepository extends JpaRepository <Alumno,Long>{
-
 }
