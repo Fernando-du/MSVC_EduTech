@@ -3,12 +3,15 @@ package com.MSVC_EduTech.Alumno.models;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import lombok.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "alumnos")
+@Getter @Setter @ToString
+@NoArgsConstructor @AllArgsConstructor
 public class Alumno {
 
     @Id
@@ -40,59 +43,4 @@ public class Alumno {
     @NotBlank(message = "El campo estado estudiante no puede estar vacio")
     private String estadoEstudiante;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getRunAlumno() {
-        return runAlumno;
-    }
-
-    public void setRunAlumno(String runAlumno) {
-        this.runAlumno = runAlumno;
-    }
-
-    public String getNombres() {
-        return nombres;
-    }
-
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-
-    public LocalDate getFechaRegistro() {
-        return fechaRegistro;
-    }
-
-    public void setFechaRegistro(LocalDate fechaRegistro) {
-        this.fechaRegistro = fechaRegistro;
-    }
-
-    public String getEstadoEstudiante() {
-        return estadoEstudiante;
-    }
-
-    public void setEstadoEstudiante(String estadoEstudiante) {
-        this.estadoEstudiante = estadoEstudiante;
-    }
 }

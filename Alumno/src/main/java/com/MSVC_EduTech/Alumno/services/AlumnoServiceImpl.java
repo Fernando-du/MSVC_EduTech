@@ -1,6 +1,8 @@
 package com.MSVC_EduTech.Alumno.services;
 
+import com.MSVC_EduTech.Alumno.exceptions.AlumnoException;
 import com.MSVC_EduTech.Alumno.models.Alumno;
+import com.MSVC_EduTech.Alumno.models.Prevision;
 import com.MSVC_EduTech.Alumno.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,15 @@ public class AlumnoServiceImpl {
 
     @Override
     public Alumno findById(Long id){
-        re
+        return this.alumnoRepository.findById(id).orElseThrow(
+                () -> new AlumnoException("El alumno con id "+id+"no se encuentra en la base de datos")
+        );
     }
+    @Override
+    public Alumno save(Alumno alumno) {
+        try {
+            Prevision prevision = this.previsionClientRest.findById()
+        }
+    }
+
 }
