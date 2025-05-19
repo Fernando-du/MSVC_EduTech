@@ -15,6 +15,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Alumno</module>
+        <module>Profesor</module>
     </modules>
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
