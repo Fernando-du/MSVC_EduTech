@@ -32,7 +32,7 @@ public class AlumnoController {
                 .body(this.alumnoService.findById(id));
     }
 
-    @GetMapping
+    @PostMapping
     public ResponseEntity<Alumno> create(@Valid @RequestBody Alumno alumno) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
