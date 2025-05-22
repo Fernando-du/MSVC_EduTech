@@ -1,5 +1,4 @@
-package com.MSVC_EduTech.Alumno.dtos;
-
+package com.MVSC_EduTech.Profesor.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -15,12 +14,11 @@ public class ErrorDTO {
 
     private Map<String, String> errors;
 
-    @Override
-    public String toString() {
-        return "{" +
-                "status= " + status +
-                ", date= " + date +
-                ", errors= " + errors +
+    public String toString(){
+        return "{"+
+                "status= "+ status +
+                ", date= "+ date +
+                ", errors= "+ errors+
                 "}";
     }
 }
