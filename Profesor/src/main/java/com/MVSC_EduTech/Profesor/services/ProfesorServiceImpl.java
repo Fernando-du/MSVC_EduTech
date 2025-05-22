@@ -24,7 +24,7 @@ public class ProfesorServiceImpl {
                 () -> new ProfesorException("El profesor con id "+id+"no se encuentra en la base de datos")
         );
     }
-
+    @Override
     public Profesor save(Profesor profesor){
         return profesorRepository.save(profesor);
     }
