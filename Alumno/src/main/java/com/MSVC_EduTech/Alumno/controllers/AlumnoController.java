@@ -50,6 +50,6 @@ public class AlumnoController {
     public ResponseEntity<Alumno> updateById(@PathVariable Long id, @RequestBody Alumno alumno) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(alumnoService.updateById(id, alumno));
+                .body(this.alumnoService.updateById(id, alumno));
     }
 }

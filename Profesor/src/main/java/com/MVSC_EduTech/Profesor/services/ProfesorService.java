@@ -8,4 +8,6 @@ public interface ProfesorService {
     List<Profesor> findAll();
     Profesor findById(Long id);
     Profesor save(Profesor profesor);
+    Profesor updateById(Long id, Profesor profesorUpdate);
+    Profesor deleteById(Long id);
 }

@@ -28,4 +28,23 @@ public class ProfesorServiceImpl {
     public Profesor save(Profesor profesor){
         return profesorRepository.save(profesor);
     }
+
+    @Override
+    public void deleteById(Long id){
+        profesorRepository.deleteById(id);
+    }
+
+    @Override
+    public Profesor updateById(Long id, Profesor profesorUpdate) {
+        return profesorRepository.findById(id).map(profesor -> {
+            profesor.setNombres(profesorUpdate.getNombres());
+            profesor.setApellidos(profesorUpdate.getApellidos());
+            profesor.setRunProfesor(profesorUpdate.getRunProfesor());
+            profesor.setCorreo(profesorUpdate.getCorreo());
+            profesor.setFechaContratacion(profesorUpdate.getFechaContratacion());
+            return profesorRepository.save(profesor);
+        }).orElseThrow(
+                () -> new ProfesorException("El profesor con id "+id+"no se encuentra en la base de datos")
+        );
+    }
 }
