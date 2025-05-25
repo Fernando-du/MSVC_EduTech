@@ -8,4 +8,6 @@ public interface AlumnoService {
     List<Alumno> findAll();
     Alumno findById(Long id);
     Alumno save(Alumno alumno);
+    Alumno updateById(Long id, Alumno alumnoUpdate);
+    Alumno deleteById(Long id);
 }

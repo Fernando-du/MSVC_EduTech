@@ -30,5 +30,23 @@ public class AlumnoServiceImpl {
         return alumnoRepository.save(alumno);
     }
 
+    @Override
+    public void deleteById(Long id){
+        alumnoRepository.deleteById(id);
+    }
 
+    @Override
+    public Alumno updateById(Long id, Alumno alumnoUpdate) {
+        return alumnoRepository.findById(id).map(alumno -> {
+            alumno.setNombres(alumnoUpdate.getNombres());
+            alumno.setApellidos(alumnoUpdate.getApellidos());
+            alumno.setRunAlumno(alumnoUpdate.getRunAlumno());
+            alumno.setCorreo(alumnoUpdate.getCorreo());
+            alumno.setEstadoEstudiante(alumnoUpdate.getEstadoEstudiante());
+            alumno.setFechaRegistro(alumnoUpdate.getFechaRegistro());
+            return alumnoRepository.save(alumno);
+        }).orElseThrow(
+                () -> new AlumnoException("El alumno con id "+id+"no se encuentra en la base de datos")
+        );
+    }
 }
