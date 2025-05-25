@@ -19,6 +19,7 @@
         <module>Curso</module>
         <module>Evaluacion</module>
         <module>Nota</module>
+        <module>Pago</module>
     </modules>
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
