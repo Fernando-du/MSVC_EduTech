@@ -1,0 +1,32 @@
+package com.MSVC_EduTech.Evaluacion.models;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
+
+import java.util.Date;
+
+@Entity
+@Table(name = "evaluaciones")
+@Getter @Setter @ToString
+@NoArgsConstructor @AllArgsConstructor
+public class Evaluacion {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false)
+    @NotBlank(message = "El campo nombre evaluaciom no puede estar vacio")
+    private String nombre;
+
+    @Column(nullable = false)
+    @NotBlank(message = "El campo fecha realizacion evaluaciom no puede estar vacio")
+    private Date fechaRealizacion;
+
+    @Column(nullable = false)
+    @NotBlank(message = "El campo tipo evaluaciom no puede estar vacio")
+    private String Tipo;
+
+
+}
