@@ -16,6 +16,7 @@
     <modules>
         <module>Alumno</module>
         <module>Profesor</module>
+        <module>Curso</module>
     </modules>
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
