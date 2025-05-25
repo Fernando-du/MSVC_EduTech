@@ -39,5 +39,17 @@ public class AlumnoController {
                 .body(this.alumnoService.save(alumno));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        alumnoService.deleteById(id);
+        return ResponseEntity
+                .status(HttpStatus.NO_CONTENT)
+                .build();
+    }
 
+    public ResponseEntity<Alumno> updateById(@PathVariable Long id, @RequestBody Alumno alumno) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(alumnoService.updateById(id, alumno));
+    }
 }
