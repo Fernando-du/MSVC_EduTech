@@ -2,9 +2,12 @@ package com.MSVC_EduTech.Nota.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+import lombok.*;
 
 @Entity
 @Table(name = "notas")
+@Getter @Setter @ToString
+@NoArgsConstructor @AllArgsConstructor
 public class Nota {
 
     @Id
@@ -27,44 +30,5 @@ public class Nota {
 
     // Prueba, Tarea, Examen Final
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getIdAlumno() {
-        return idAlumno;
-    }
-
-    public void setIdAlumno(Long idAlumno) {
-        this.idAlumno = idAlumno;
-    }
-
-    public Long getIdCurso() {
-        return idCurso;
-    }
-
-    public void setIdCurso(Long idCurso) {
-        this.idCurso = idCurso;
-    }
-
-    public Double getValorNota() {
-        return valorNota;
-    }
-
-    public void setValorNota(Double valorNota) {
-        this.valorNota = valorNota;
-    }
-
-    public String getTipoEvaluacion() {
-        return tipoEvaluacion;
-    }
-
-    public void setTipoEvaluacion(String tipoEvaluacion) {
-        this.tipoEvaluacion = tipoEvaluacion;
-    }
 
 }
