@@ -1,6 +1,6 @@
-package com.MSVC_EduTech.Evaluacion.exceptions;
+package com.MSVC_EduTech.Pago.exceptions;
 
-import com.MSVC_EduTech.Evaluacion.dtos.ErrorDTO;
+import com.MSVC_EduTech.Pago.dtos.ErrorDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -37,15 +37,15 @@ public class GlobalExceptionHandler {
                 .body(this.createErrorDTO(HttpStatus.BAD_REQUEST.value(), new Date(), errorMap));
     }
 
-    @ExceptionHandler(EvaluacionException.class)
-    private ResponseEntity<ErrorDTO> handleEvaluacionException(EvaluacionException exception){
+    @ExceptionHandler(PagoException.class)
+    private ResponseEntity<ErrorDTO> handlePagoException(PagoException exception){
 
         if(exception.getMessage().contains("no se encuentra en la base de datos")) {
-            Map<String, String> errorMap = Collections.singletonMap("Evaluacion no encontrado", exception.getMessage());
+            Map<String, String> errorMap = Collections.singletonMap("Pago no encontrado", exception.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(this.createErrorDTO(HttpStatus.NOT_FOUND.value(), new Date(), errorMap));
         }else {
-            Map<String, String> errorMap = Collections.singletonMap("Evaluacion existente", exception.getMessage());
+            Map<String, String> errorMap = Collections.singletonMap("Pago existente", exception.getMessage());
             return ResponseEntity.status(HttpStatus.CONFLICT)
                     .body(this.createErrorDTO(HttpStatus.CONFLICT.value(), new Date(), errorMap));
         }
