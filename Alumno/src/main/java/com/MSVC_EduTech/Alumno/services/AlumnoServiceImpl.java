@@ -9,16 +9,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class AlumnoServiceImpl {
+public class AlumnoServiceImpl implements AlumnoService {
 
     @Autowired
     private AlumnoRepository alumnoRepository;
-
     @Override
     public List<Alumno> findAll(){
         return this.alumnoRepository.findAll();
     }
-
     @Override
     public Alumno findById(Long id){
         return this.alumnoRepository.findById(id).orElseThrow(
@@ -35,7 +33,7 @@ public class AlumnoServiceImpl {
         alumnoRepository.deleteById(id);
     }
 
-    @Override
+
     public Alumno updateById(Long id, Alumno alumnoUpdate) {
         return alumnoRepository.findById(id).map(alumno -> {
             alumno.setNombres(alumnoUpdate.getNombres());

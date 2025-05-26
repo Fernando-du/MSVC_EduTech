@@ -9,5 +9,5 @@ public interface AlumnoService {
     Alumno findById(Long id);
     Alumno save(Alumno alumno);
     Alumno updateById(Long id, Alumno alumnoUpdate);
-    Alumno deleteById(Long id);
+    void deleteById(Long id);
 }
