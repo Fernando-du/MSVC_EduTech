@@ -46,11 +46,7 @@ public class NotaServiceImpl implements NotaServices {
     }
 
     @Override
-    public Nota deleteById(Long id) {
-        // Elimina una nota y retorna la nota eliminada
-        Nota nota = notaRepository.findById(id)
-                .orElseThrow(() -> new NotaException("La nota con ID " + id + " no existe."));
+    public void deleteById(Long id) {
         notaRepository.deleteById(id);
-        return nota;
     }
 }

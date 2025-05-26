@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class CursoServiceImpl {
+public class CursoServiceImpl implements CursoService {
 
     @Autowired
     private CursoRepository cursoRepository;
@@ -32,8 +32,7 @@ public class CursoServiceImpl {
 
     @Override
     public void deleteById(Long id){
-        cursoRepository.deleteById(id);
-    }
+        cursoRepository.deleteById(id);}
 
     @Override
     public Curso updateById(Long id, Curso cursoUpdate) {

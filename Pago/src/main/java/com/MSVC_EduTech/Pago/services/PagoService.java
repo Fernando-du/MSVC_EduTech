@@ -9,5 +9,5 @@ public interface PagoService {
     Pago findById(Long id);
     Pago save(Pago pago);
     Pago updateById(Long id, Pago pagoUpdate);
-    Pago deleteById(Long id);
+    void deleteById(Long id);
 }

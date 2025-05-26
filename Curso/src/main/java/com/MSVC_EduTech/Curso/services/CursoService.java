@@ -9,5 +9,5 @@ public interface CursoService {
     Curso findById(Long id);
     Curso save(Curso alumno);
     Curso updateById(Long id, Curso cursoUpdate);
-    Curso deleteById(Long id);
+    void deleteById(Long id);
 }

@@ -9,5 +9,5 @@ public interface EvaluacionService {
     Evaluacion findById(Long id);
     Evaluacion save(Evaluacion evaluacion);
     Evaluacion updateById(Long id, Evaluacion evaluacionUpdate);
-    Evaluacion deleteById(Long id);
+    void deleteById(Long id);
 }

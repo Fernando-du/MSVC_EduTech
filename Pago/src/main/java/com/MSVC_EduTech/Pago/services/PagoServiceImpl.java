@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PagoServiceImpl {
+public class PagoServiceImpl implements PagoService {
 
     @Autowired
     private PagoRepository pagoRepository;
