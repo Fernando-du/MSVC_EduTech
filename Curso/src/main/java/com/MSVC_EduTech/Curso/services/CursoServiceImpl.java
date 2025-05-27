@@ -43,8 +43,6 @@ public class CursoServiceImpl implements CursoService {
             curso.setDuracion(cursoUpdate.getDuracion());
             curso.setFechaInicio(cursoUpdate.getFechaInicio());
             curso.setFechaTermino(cursoUpdate.getFechaTermino());
-            curso.setIdProfesor(cursoUpdate.getIdProfesor());
-            curso.setAlumnos(cursoUpdate.getAlumnos());
             return cursoRepository.save(curso);
         }).orElseThrow(
                 () -> new CursoException("El curso con id "+id+"no se encuentra en la base de datos")
