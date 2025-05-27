@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "evaluaciones")
@@ -22,7 +22,7 @@ public class Evaluacion {
 
     @Column(nullable = false)
     @NotBlank(message = "El campo fecha realizacion evaluaciom no puede estar vacio")
-    private Date fechaRealizacion;
+    private LocalDate fechaRealizacion;
 
     @Column(nullable = false)
     @NotBlank(message = "El campo tipo evaluaciom no puede estar vacio")

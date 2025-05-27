@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "cursos")
@@ -26,11 +26,11 @@ public class Curso{
 
     @Column(nullable = false)
     @NotBlank(message = "El campo fecha incio curso no puede estar vacio")
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
 
     @Column(nullable = false)
     @NotBlank(message = "El campo fecha termino curso no puede estar vacio")
-    private Date fechaTermino;
+    private LocalDate fechaTermino;
 
     @Column(nullable = false)
     @NotBlank(message = "El campo estado curso no puede estar vacio")

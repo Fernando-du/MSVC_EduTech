@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "profesores")
@@ -36,7 +36,7 @@ public class Profesor {
 
     @Column(nullable = false)
     @NotBlank(message = "El campo fecha contratacion no puede estar vacio")
-    private Date fechaContratacion;
+    private LocalDate fechaContratacion;
 
 
 
