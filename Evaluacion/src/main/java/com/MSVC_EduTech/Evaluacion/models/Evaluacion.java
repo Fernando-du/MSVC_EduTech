@@ -14,7 +14,8 @@ public class Evaluacion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_evaluacion")
+    private Long idEvaluacion;
 
     @Column(nullable = false)
     @NotBlank(message = "El campo nombre evaluaciom no puede estar vacio")

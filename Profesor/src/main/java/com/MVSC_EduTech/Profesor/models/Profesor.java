@@ -15,7 +15,8 @@ public class Profesor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_profesor")
+    private Long idProfesor;
 
     @Column(nullable = false, unique = true)
     @NotBlank(message = "El campo run profesor no puede estar vacio")

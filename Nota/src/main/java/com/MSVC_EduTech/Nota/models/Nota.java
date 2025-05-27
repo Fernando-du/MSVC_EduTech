@@ -12,7 +12,8 @@ public class Nota {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id_nota")
+    private Long idNota;
 
     @NotNull(message = "El ID del alumno no puede ser nulo")
     private Long idAlumno;

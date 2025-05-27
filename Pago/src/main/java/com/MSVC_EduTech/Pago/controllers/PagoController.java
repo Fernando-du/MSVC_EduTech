@@ -1,6 +1,6 @@
 package com.MSVC_EduTech.Pago.controllers;
 
-import com.MSVC_EduTech.Pago.models.Pago;
+import com.MSVC_EduTech.Pago.models.entities.Pago;
 import com.MSVC_EduTech.Pago.services.PagoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
