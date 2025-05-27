@@ -1,6 +1,6 @@
 package com.MSVC_EduTech.Evaluacion.controllers;
 
-import com.MSVC_EduTech.Evaluacion.models.Evaluacion;
+import com.MSVC_EduTech.Evaluacion.models.entities.Evaluacion;
 import com.MSVC_EduTech.Evaluacion.services.EvaluacionService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

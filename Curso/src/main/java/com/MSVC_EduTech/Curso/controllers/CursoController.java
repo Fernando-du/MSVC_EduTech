@@ -1,6 +1,6 @@
 package com.MSVC_EduTech.Curso.controllers;
 
-import com.MSVC_EduTech.Curso.models.Curso;
+import com.MSVC_EduTech.Curso.models.entities.Curso;
 import com.MSVC_EduTech.Curso.services.CursoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

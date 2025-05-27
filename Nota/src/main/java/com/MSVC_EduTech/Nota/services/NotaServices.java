@@ -1,6 +1,6 @@
 package com.MSVC_EduTech.Nota.services;
 
-import com.MSVC_EduTech.Nota.models.Nota;
+import com.MSVC_EduTech.Nota.models.entities.Nota;
 
 import java.util.List;
 

@@ -1,10 +1,13 @@
-package com.MSVC_EduTech.Curso.models;
+package com.MSVC_EduTech.Curso.models.entities;
 
+import com.MSVC_EduTech.Curso.models.Alumno;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "cursos")
@@ -40,4 +43,11 @@ public class Curso{
     @Column(nullable = false)
     @NotBlank(message = "El campo duracion curso no puede estar vacio")
     private Integer duracion;
+
+    @Column(name = "id_profesor")
+    @NotNull(message = "El campo id_profesor no puede estar vacio")
+    private Long idProfesor;
+
+    @NotNull(message = "El campo id_profesor no puede estar vacio")
+    private List<Alumno> alumnos;
 }

@@ -1,6 +1,6 @@
 package com.MSVC_EduTech.Nota.controllers;
 
-import com.MSVC_EduTech.Nota.models.Nota;
+import com.MSVC_EduTech.Nota.models.entities.Nota;
 import com.MSVC_EduTech.Nota.services.NotaServices;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,7 @@
 package com.MSVC_EduTech.Evaluacion.services;
 
 import com.MSVC_EduTech.Evaluacion.exceptions.EvaluacionException;
-import com.MSVC_EduTech.Evaluacion.models.Evaluacion;
+import com.MSVC_EduTech.Evaluacion.models.entities.Evaluacion;
 import com.MSVC_EduTech.Evaluacion.repositories.EvaluacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,6 +41,8 @@ public class EvaluacionServiceImpl implements EvaluacionService {
             evaluacion.setFechaRealizacion(evaluacionUpdate.getFechaRealizacion());
             evaluacion.setTipo(evaluacionUpdate.getTipo());
             evaluacion.setNombre(evaluacionUpdate.getNombre());
+            evaluacion.setIdProfesor(evaluacionUpdate.getIdProfesor());
+            evaluacion.setIdCurso(evaluacionUpdate.getIdCurso());
             return evaluacionRepository.save(evaluacion);
         }).orElseThrow(
                 () -> new EvaluacionException("La evaluacion con id "+id+"no se encuentra en la base de datos")

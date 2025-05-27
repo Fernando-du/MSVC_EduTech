@@ -1,7 +1,7 @@
 package com.MSVC_EduTech.Nota.services;
 
 import com.MSVC_EduTech.Nota.exceptions.NotaException;
-import com.MSVC_EduTech.Nota.models.Nota;
+import com.MSVC_EduTech.Nota.models.entities.Nota;
 import com.MSVC_EduTech.Nota.repositories.NotaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,10 +37,9 @@ public class NotaServiceImpl implements NotaServices {
     public Nota updateById(Long id, Nota notaUpdate) {
         // Actualiza una nota si existe
         return notaRepository.findById(id).map(nota -> {
-            nota.setIdAlumno(notaUpdate.getIdAlumno());
-            nota.setIdCurso(notaUpdate.getIdCurso());
             nota.setValorNota(notaUpdate.getValorNota());
-            nota.setTipoEvaluacion(notaUpdate.getTipoEvaluacion());
+            nota.setIdAlumno(notaUpdate.getIdAlumno());
+            nota.setIdEvaluacion(notaUpdate.getIdEvaluacion());
             return notaRepository.save(nota);
         }).orElseThrow(() -> new NotaException("No se puede actualizar. La nota con ID " + id + " no existe."));
     }

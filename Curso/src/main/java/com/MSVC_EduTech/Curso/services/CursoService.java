@@ -1,6 +1,6 @@
 package com.MSVC_EduTech.Curso.services;
 
-import com.MSVC_EduTech.Curso.models.Curso;
+import com.MSVC_EduTech.Curso.models.entities.Curso;
 
 import java.util.List;
 

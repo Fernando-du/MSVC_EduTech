@@ -1,6 +1,6 @@
 package com.MSVC_EduTech.Evaluacion.services;
 
-import com.MSVC_EduTech.Evaluacion.models.Evaluacion;
+import com.MSVC_EduTech.Evaluacion.models.entities.Evaluacion;
 
 import java.util.List;
 

@@ -31,7 +31,7 @@ public class Pago {
     private Long idAlumno;
 
     @Column(name = "id_curso")
-    @NotNull(message = "El campo id_alumno no puede estar vacio")
+    @NotNull(message = "El campo id_curso no puede estar vacio")
     private Long idCurso;
 
 }

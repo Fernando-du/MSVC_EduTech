@@ -1,7 +1,7 @@
 package com.MSVC_EduTech.Curso.services;
 
 import com.MSVC_EduTech.Curso.exceptions.CursoException;
-import com.MSVC_EduTech.Curso.models.Curso;
+import com.MSVC_EduTech.Curso.models.entities.Curso;
 import com.MSVC_EduTech.Curso.repositories.CursoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,6 +43,8 @@ public class CursoServiceImpl implements CursoService {
             curso.setDuracion(cursoUpdate.getDuracion());
             curso.setFechaInicio(cursoUpdate.getFechaInicio());
             curso.setFechaTermino(cursoUpdate.getFechaTermino());
+            curso.setIdProfesor(cursoUpdate.getIdProfesor());
+            curso.setAlumnos(cursoUpdate.getAlumnos());
             return cursoRepository.save(curso);
         }).orElseThrow(
                 () -> new CursoException("El curso con id "+id+"no se encuentra en la base de datos")

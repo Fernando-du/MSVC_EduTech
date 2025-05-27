@@ -1,4 +1,4 @@
-package com.MSVC_EduTech.Nota.models;
+package com.MSVC_EduTech.Nota.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -15,21 +15,17 @@ public class Nota {
     @Column(name = "id_nota")
     private Long idNota;
 
+    @Column(name = "id_alumno")
     @NotNull(message = "El ID del alumno no puede ser nulo")
     private Long idAlumno;
 
+    @Column(name = "id_evaluacion")
     @NotNull(message = "El ID del curso no puede ser nulo")
-    private Long idCurso;
+    private Long idEvaluacion;
 
     @NotNull(message = "La nota no puede ser nula")
     @DecimalMin(value = "1.0", message = "La nota mínima es 1.0")
     @DecimalMax(value = "7.0", message = "La nota máxima es 7.0")
     private Double valorNota;
-
-    @NotBlank(message = "El tipo de evaluación no puede estar vacío")
-    private String tipoEvaluacion;
-
-    // Prueba, Tarea, Examen Final
-
 
 }

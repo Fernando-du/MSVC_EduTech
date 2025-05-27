@@ -1,7 +1,8 @@
-package com.MSVC_EduTech.Evaluacion.models;
+package com.MSVC_EduTech.Evaluacion.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -27,7 +28,15 @@ public class Evaluacion {
 
     @Column(nullable = false)
     @NotBlank(message = "El campo tipo evaluaciom no puede estar vacio")
-    private String Tipo;
+    private String tipo;
+
+    @Column(name = "id_curso")
+    @NotNull(message = "El campo id_curso no puede estar vacio")
+    private Long idCurso;
+
+    @Column(name = "id_profesor")
+    @NotNull(message = "El campo id_profesor no puede estar vacio")
+    private Long idProfesor;
 
 
 }
