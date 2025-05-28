@@ -2,6 +2,7 @@ package com.MSVC_EduTech.Alumno.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 import org.springframework.boot.autoconfigure.web.WebProperties;
@@ -37,7 +38,7 @@ public class Alumno {
     private String correo;
 
     @Column(nullable = false)
-    @NotBlank(message = "El campo fecha registro no puede estar vacio")
+    @NotNull(message = "El campo fecha registro no puede estar vacio")
     private LocalDate fechaRegistro;
 
     @Column(nullable = false)
