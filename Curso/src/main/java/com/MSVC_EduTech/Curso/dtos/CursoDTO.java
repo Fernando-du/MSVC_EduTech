@@ -1,5 +1,6 @@
 package com.MSVC_EduTech.Curso.dtos;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ public class CursoDTO {
     private LocalDate fechaTermino;
     private String estado;
     private Integer duracion;
+    @NotNull(message = "El profesor no puede ser nulo")
     private ProfesorDTO profesor;
 }
 

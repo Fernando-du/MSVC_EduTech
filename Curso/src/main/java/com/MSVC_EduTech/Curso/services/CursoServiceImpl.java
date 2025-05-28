@@ -22,7 +22,6 @@ public class CursoServiceImpl implements CursoService {
         if (curso.getProfesor() != null) {
             profesorDTO = new ProfesorDTO();
             profesorDTO.setIdProfesor(curso.getProfesor().getIdProfesor());
-            // No seteamos otros campos para simplificar
         }
 
         return new CursoDTO(
@@ -75,6 +74,9 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public CursoDTO save(CursoDTO cursoDTO) {
+        if (cursoDTO.getProfesor() == null || cursoDTO.getProfesor().getIdProfesor() == null) {
+            throw new IllegalArgumentException("El profesor es obligatorio y debe tener un id válido");
+        }
         Curso curso = mapToEntity(cursoDTO);
         Curso cursoGuardado = cursoRepository.save(curso);
         return mapToDTO(cursoGuardado);
