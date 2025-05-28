@@ -19,7 +19,7 @@ public class Pago {
     private Long idPago;
 
     @Column(nullable = false)
-    @NotBlank(message = "El campo fecha pago no puede estar vacio")
+    @NotNull(message = "El campo fecha pago no puede estar vacio")
     private LocalDate fechaPago;
 
     @Column(nullable = false)

@@ -23,7 +23,7 @@ public class Evaluacion {
     private String nombre;
 
     @Column(nullable = false)
-    @NotBlank(message = "El campo fecha realizacion evaluaciom no puede estar vacio")
+    @NotNull(message = "El campo fecha realizacion evaluaciom no puede estar vacio")
     private LocalDate fechaRealizacion;
 
     @Column(nullable = false)

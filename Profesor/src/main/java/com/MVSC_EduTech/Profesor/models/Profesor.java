@@ -2,6 +2,7 @@ package com.MVSC_EduTech.Profesor.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
@@ -36,7 +37,7 @@ public class Profesor {
     private String correo;
 
     @Column(nullable = false)
-    @NotBlank(message = "El campo fecha contratacion no puede estar vacio")
+    @NotNull(message = "El campo fecha contratacion no puede estar vacio")
     private LocalDate fechaContratacion;
 
 
