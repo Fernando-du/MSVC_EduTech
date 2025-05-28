@@ -44,16 +44,9 @@ public class CursoServiceImpl implements CursoService {
 
         validarProfesorExistente(dto.getIdProfesor());
 
-        Curso curso = new Curso();
-        curso.setNombre(dto.getNombre());
-        curso.setSeccion(dto.getSeccion());
-        curso.setDuracion(dto.getDuracion());
-        curso.setEstado(dto.getEstado());
-        curso.setFechaInicio(dto.getFechaInicio());
-        curso.setFechaTermino(dto.getFechaTermino());
-        curso.setIdProfesor(dto.getIdProfesor());
-
-        return mapToDTO(cursoRepository.save(curso));
+        Curso curso = mapToEntity(dto);
+        Curso cursoGuardado = cursoRepository.save(curso);
+        return mapToDTO(cursoGuardado);
     }
 
     @Override
@@ -94,16 +87,31 @@ public class CursoServiceImpl implements CursoService {
         }
     }
 
+    // Mapper privado para convertir entidad a DTO
     private CursoDTO mapToDTO(Curso curso) {
         CursoDTO dto = new CursoDTO();
         dto.setIdCurso(curso.getIdCurso());
         dto.setNombre(curso.getNombre());
         dto.setSeccion(curso.getSeccion());
-        dto.setDuracion(curso.getDuracion());
-        dto.setEstado(curso.getEstado());
         dto.setFechaInicio(curso.getFechaInicio());
         dto.setFechaTermino(curso.getFechaTermino());
+        dto.setEstado(curso.getEstado());
+        dto.setDuracion(curso.getDuracion());
         dto.setIdProfesor(curso.getIdProfesor());
         return dto;
+    }
+
+    // Mapper privado para convertir DTO a entidad
+    private Curso mapToEntity(CursoDTO dto) {
+        Curso curso = new Curso();
+        curso.setIdCurso(dto.getIdCurso());
+        curso.setNombre(dto.getNombre());
+        curso.setSeccion(dto.getSeccion());
+        curso.setFechaInicio(dto.getFechaInicio());
+        curso.setFechaTermino(dto.getFechaTermino());
+        curso.setEstado(dto.getEstado());
+        curso.setDuracion(dto.getDuracion());
+        curso.setIdProfesor(dto.getIdProfesor());
+        return curso;
     }
 }
