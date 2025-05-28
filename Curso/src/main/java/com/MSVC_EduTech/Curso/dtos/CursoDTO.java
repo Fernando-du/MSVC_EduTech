@@ -1,5 +1,6 @@
 package com.MSVC_EduTech.Curso.dtos;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class CursoDTO {
     private LocalDate fechaTermino;
     private String estado;
     private Integer duracion;
+    @JsonProperty("profesor_id")
     private Long idProfesor;
 }
 
