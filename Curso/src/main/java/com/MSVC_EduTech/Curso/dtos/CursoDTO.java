@@ -18,7 +18,6 @@ public class CursoDTO {
     private LocalDate fechaTermino;
     private String estado;
     private Integer duracion;
-    @NotNull(message = "El profesor no puede ser nulo")
-    private ProfesorDTO profesor;
+    private Long idProfesor;
 }
 

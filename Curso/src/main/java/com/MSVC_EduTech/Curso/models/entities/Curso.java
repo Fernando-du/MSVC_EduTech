@@ -43,9 +43,7 @@ public class Curso{
     @NotNull(message = "El campo duracion curso no puede estar vacio")
     private Integer duracion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_profesor", nullable = false)
-    @NotNull(message = "El campo profesor no puede estar vacío")
-    private Profesor profesor;
+    @Column(name = "profesor_id", nullable = false)
+    private Long idProfesor;
 
 }
