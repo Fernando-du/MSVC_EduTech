@@ -43,9 +43,8 @@ public class Curso{
     @NotNull(message = "El campo duracion curso no puede estar vacio")
     private Integer duracion;
 
-    @OneToOne
+    @Column(name = "id_profesor")
     @NotNull(message = "El campo id_profesor no puede estar vacio")
-    @JoinColumn(name = "id_profesor")
-    private Profesor profesor;
+    private Long idprofesor;
 
 }
