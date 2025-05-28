@@ -1,5 +1,6 @@
 package com.MSVC_EduTech.Curso.controllers;
 
+import com.MSVC_EduTech.Curso.dtos.CursoDTO;
 import com.MSVC_EduTech.Curso.models.entities.Curso;
 import com.MSVC_EduTech.Curso.services.CursoService;
 import jakarta.validation.Valid;
@@ -20,23 +21,25 @@ public class CursoController {
     private CursoService cursoService;
 
     @GetMapping
-    public ResponseEntity<List<Curso>> findAll(){
+    public ResponseEntity<List<CursoDTO>> findAll() {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(this.cursoService.findAll());
+                .body(cursoService.findAll());
     }
+
     @GetMapping("/{id}")
-    public ResponseEntity<Curso> findById(@PathVariable Long id) {
+    public ResponseEntity<CursoDTO> findById(@PathVariable Long id) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(this.cursoService.findById(id));
+                .body(cursoService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Curso> create(@Valid @RequestBody Curso curso) {
+    public ResponseEntity<CursoDTO> create(@Valid @RequestBody CursoDTO cursoDTO) {
+        CursoDTO nuevoCurso = cursoService.save(cursoDTO);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(this.cursoService.save(curso));
+                .body(nuevoCurso);
     }
 
     @DeleteMapping("/{id}")
@@ -47,11 +50,14 @@ public class CursoController {
                 .build();
     }
 
-    public ResponseEntity<Curso> updateById(@PathVariable Long id, @RequestBody Curso curso) {
+    @PutMapping("/{id}")
+    public ResponseEntity<CursoDTO> updateById(@PathVariable Long id, @Valid @RequestBody CursoDTO cursoDTO) {
+        CursoDTO cursoActualizado = cursoService.updateById(id, cursoDTO);
         return ResponseEntity
-                .status(HttpStatus.CREATED)
-                .body(this.cursoService.updateById(id, curso));
+                .status(HttpStatus.OK)
+                .body(cursoActualizado);
     }
+
 }
 
 
