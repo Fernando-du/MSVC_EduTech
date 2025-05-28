@@ -8,7 +8,7 @@
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<groupId>com.MVSC_EduTech</groupId>
-	<artifactId>msvc-Profesor</artifactId>
+	<artifactId>Profesor</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Profesor</name>
 	<description>Demo project for Spring Boot</description>

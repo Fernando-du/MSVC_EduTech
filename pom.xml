@@ -15,7 +15,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>Alumno</module>
-        <module>msvc-Profesor</module>
+        <module>Profesor</module>
         <module>Curso</module>
         <module>Evaluacion</module>
         <module>Nota</module>
