@@ -46,7 +46,7 @@ public class AlumnoController {
                 .status(HttpStatus.NO_CONTENT)
                 .build();
     }
-
+    @PutMapping
     public ResponseEntity<Alumno> updateById(@PathVariable Long id, @RequestBody Alumno alumno) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
