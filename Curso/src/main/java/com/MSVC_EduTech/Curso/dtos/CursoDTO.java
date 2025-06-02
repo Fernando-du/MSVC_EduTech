@@ -12,14 +12,12 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CursoDTO {
-    private Long idCurso;
     private String nombre;
     private String seccion;
     private LocalDate fechaInicio;
     private LocalDate fechaTermino;
     private String estado;
     private Integer duracion;
-    @JsonProperty("profesor_id")
     private Long idProfesor;
 }
 

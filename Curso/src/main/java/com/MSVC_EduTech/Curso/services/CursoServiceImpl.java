@@ -8,6 +8,8 @@ import com.MSVC_EduTech.Curso.models.Profesor;
 import com.MSVC_EduTech.Curso.models.entities.Curso;
 import com.MSVC_EduTech.Curso.repositories.CursoRepository;
 import feign.FeignException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ import java.util.List;
 @Service
 public class CursoServiceImpl implements CursoService {
 
+    private static final Logger log = LoggerFactory.getLogger(CursoServiceImpl.class);
     @Autowired
     private CursoRepository cursoRepository;
 
@@ -38,13 +41,19 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public CursoDTO save(CursoDTO dto) {
-        if (dto.getIdProfesor() == null) {
+        if (dto == null) {
             throw new IllegalArgumentException("El curso debe tener un profesor asignado");
         }
+        try {
+            log.warn("ID PROFESOR: {}",dto.getIdProfesor());
 
-        validarProfesorExistente(dto.getIdProfesor());
+            validarProfesorExistente(dto.getIdProfesor());
+        }catch (FeignException e){
+            log.warn("El elemento profesor no existe");
 
+        }
         Curso curso = mapToEntity(dto);
+        curso.setIdCurso(dto.getIdProfesor());
         Curso cursoGuardado = cursoRepository.save(curso);
         return mapToDTO(cursoGuardado);
     }
@@ -90,7 +99,7 @@ public class CursoServiceImpl implements CursoService {
     // Mapper privado para convertir entidad a DTO
     private CursoDTO mapToDTO(Curso curso) {
         CursoDTO dto = new CursoDTO();
-        dto.setIdCurso(curso.getIdCurso());
+
         dto.setNombre(curso.getNombre());
         dto.setSeccion(curso.getSeccion());
         dto.setFechaInicio(curso.getFechaInicio());
@@ -104,7 +113,7 @@ public class CursoServiceImpl implements CursoService {
     // Mapper privado para convertir DTO a entidad
     private Curso mapToEntity(CursoDTO dto) {
         Curso curso = new Curso();
-        curso.setIdCurso(dto.getIdCurso());
+
         curso.setNombre(dto.getNombre());
         curso.setSeccion(dto.getSeccion());
         curso.setFechaInicio(dto.getFechaInicio());
