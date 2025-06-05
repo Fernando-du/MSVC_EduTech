@@ -26,60 +26,36 @@ public class CursoServiceImpl implements CursoService {
     private ProfesorClientRest profesorClientRest;
 
     @Override
-    public List<CursoDTO> findAll() {
-        return cursoRepository.findAll().stream()
-                .map(this::mapToDTO)
-                .toList();
+    public List<Curso> findAll() {
+        return this.cursoRepository.findAll();
     }
 
     @Override
-    public CursoDTO findById(Long id) {
-        Curso curso = cursoRepository.findById(id)
-                .orElseThrow(() -> new CursoException("El curso con id " + id + " no se encuentra en la base de datos"));
-        return mapToDTO(curso);
+    public Curso findById(Long id) {
+        return this.cursoRepository.findById(id).orElseThrow(
+                () -> new CursoException("El Curso con id "+id+"no se encuentra en la base de datos")
+        );
     }
 
     @Override
-    public CursoDTO save(CursoDTO dto) {
-        if (dto == null) {
-            throw new IllegalArgumentException("El curso debe tener un profesor asignado");
-        }
-        try {
-            log.warn("ID PROFESOR: {}",dto.getIdProfesor());
-
-            validarProfesorExistente(dto.getIdProfesor());
-        }catch (FeignException e){
-            log.warn("El elemento profesor no existe");
-
-        }
-        Curso curso = mapToEntity(dto);
-        curso.setIdCurso(dto.getIdProfesor());
-        Curso cursoGuardado = cursoRepository.save(curso);
-        return mapToDTO(cursoGuardado);
+    public Curso save(Curso curso) {
+        return cursoRepository.save(curso);
     }
 
     @Override
-    public CursoDTO updateById(Long id, CursoDTO dto) {
+    public Curso updateById(Long id, Curso cursoUpdate) {
         return cursoRepository.findById(id).map(curso -> {
-
-            curso.setNombre(dto.getNombre());
-            curso.setSeccion(dto.getSeccion());
-            curso.setDuracion(dto.getDuracion());
-            curso.setEstado(dto.getEstado());
-            curso.setFechaInicio(dto.getFechaInicio());
-            curso.setFechaTermino(dto.getFechaTermino());
-
-            if (dto.getIdProfesor() != null) {
-                validarProfesorExistente(dto.getIdProfesor());
-                curso.setIdProfesor(dto.getIdProfesor());
-            } else {
-                curso.setIdProfesor(null);
-            }
-
-            Curso actualizado = cursoRepository.save(curso);
-            return mapToDTO(actualizado);
-
-        }).orElseThrow(() -> new CursoException("El curso con id " + id + " no se encuentra en la base de datos"));
+            curso.setNombre(cursoUpdate.getNombre());
+            curso.setSeccion(cursoUpdate.getSeccion());
+            curso.setDuracion(cursoUpdate.getDuracion());
+            curso.setFechaInicio(cursoUpdate.getFechaInicio());
+            curso.setFechaTermino(cursoUpdate.getFechaTermino());
+            curso.setEstado(cursoUpdate.getEstado());
+            curso.setIdProfesor(cursoUpdate.getIdProfesor());
+            return cursoRepository.save(curso);
+        }).orElseThrow(
+                () -> new CursoException("El curso con id "+id+"no se encuentra en la base de datos")
+        );
     }
 
     @Override
@@ -87,40 +63,4 @@ public class CursoServiceImpl implements CursoService {
         cursoRepository.deleteById(id);
     }
 
-    // Validación con cliente Feign
-    private void validarProfesorExistente(Long idProfesor) {
-        try {
-            profesorClientRest.findById(idProfesor);
-        } catch (FeignException.NotFound e) {
-            throw new IllegalArgumentException("El profesor con ID " + idProfesor + " no existe");
-        }
-    }
-
-    // Mapper privado para convertir entidad a DTO
-    private CursoDTO mapToDTO(Curso curso) {
-        CursoDTO dto = new CursoDTO();
-
-        dto.setNombre(curso.getNombre());
-        dto.setSeccion(curso.getSeccion());
-        dto.setFechaInicio(curso.getFechaInicio());
-        dto.setFechaTermino(curso.getFechaTermino());
-        dto.setEstado(curso.getEstado());
-        dto.setDuracion(curso.getDuracion());
-        dto.setIdProfesor(curso.getIdProfesor());
-        return dto;
-    }
-
-    // Mapper privado para convertir DTO a entidad
-    private Curso mapToEntity(CursoDTO dto) {
-        Curso curso = new Curso();
-
-        curso.setNombre(dto.getNombre());
-        curso.setSeccion(dto.getSeccion());
-        curso.setFechaInicio(dto.getFechaInicio());
-        curso.setFechaTermino(dto.getFechaTermino());
-        curso.setEstado(dto.getEstado());
-        curso.setDuracion(dto.getDuracion());
-        curso.setIdProfesor(dto.getIdProfesor());
-        return curso;
-    }
 }

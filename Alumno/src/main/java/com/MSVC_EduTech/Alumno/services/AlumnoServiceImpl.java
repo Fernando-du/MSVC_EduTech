@@ -13,10 +13,12 @@ public class AlumnoServiceImpl implements AlumnoService {
 
     @Autowired
     private AlumnoRepository alumnoRepository;
+
     @Override
     public List<Alumno> findAll(){
         return this.alumnoRepository.findAll();
     }
+
     @Override
     public Alumno findById(Long id){
         return this.alumnoRepository.findById(id).orElseThrow(

@@ -21,25 +21,24 @@ public class CursoController {
     private CursoService cursoService;
 
     @GetMapping
-    public ResponseEntity<List<CursoDTO>> findAll() {
+    public ResponseEntity<List<Curso>> findAll() {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(cursoService.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CursoDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<Curso> findById(@PathVariable Long id) {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(cursoService.findById(id));
     }
 
     @PostMapping
-    public ResponseEntity<CursoDTO> create(@Valid @RequestBody CursoDTO cursoDTO) {
-        CursoDTO nuevoCurso = cursoService.save(cursoDTO);
+    public ResponseEntity<Curso> create(@Valid @RequestBody Curso curso) {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(nuevoCurso);
+                .body(this.cursoService.save(curso));
     }
 
     @DeleteMapping("/{id}")
@@ -51,11 +50,10 @@ public class CursoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CursoDTO> updateById(@PathVariable Long id, @Valid @RequestBody CursoDTO cursoDTO) {
-        CursoDTO cursoActualizado = cursoService.updateById(id, cursoDTO);
+    public ResponseEntity<Curso> updateById(@PathVariable Long id, @RequestBody Curso curso) {
         return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(cursoActualizado);
+                .status(HttpStatus.CREATED)
+                .body(this.cursoService.updateById(id, curso));
     }
 
 }

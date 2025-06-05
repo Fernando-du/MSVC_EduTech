@@ -6,9 +6,9 @@ import com.MSVC_EduTech.Curso.models.entities.Curso;
 import java.util.List;
 
 public interface CursoService {
-    List<CursoDTO> findAll();
-    CursoDTO findById(Long id);
-    CursoDTO save(CursoDTO cursoDTO);
-    CursoDTO updateById(Long id, CursoDTO cursoDTO);
+    List<Curso> findAll();
+    Curso findById(Long id);
+    Curso save(Curso curso);
+    Curso updateById(Long id, Curso cursoUpdate);
     void deleteById(Long id);
 }

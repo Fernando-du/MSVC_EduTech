@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProfesorDTO {
-    @NotNull(message = "El id del profesor es obligatorio")
     private Long idProfesor;
     private String runProfesor;
     private String nombres;

@@ -13,7 +13,6 @@ import java.time.LocalDate;
 public class Profesor {
     @Id
     private Long idProfesor;
-
     private String nombres;
     private String apellidos;
     private String correo;
