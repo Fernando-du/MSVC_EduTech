@@ -1,8 +1,15 @@
 package com.MSVC_EduTech.Pago.services;
 
+import com.MSVC_EduTech.Pago.clients.AlumnoClientRest;
+import com.MSVC_EduTech.Pago.clients.CursoClientRest;
 import com.MSVC_EduTech.Pago.exceptions.PagoException;
+import com.MSVC_EduTech.Pago.models.Alumno;
+import com.MSVC_EduTech.Pago.models.Curso;
 import com.MSVC_EduTech.Pago.models.entities.Pago;
 import com.MSVC_EduTech.Pago.repositories.PagoRepository;
+import feign.FeignException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +18,13 @@ import java.util.List;
 @Service
 public class PagoServiceImpl implements PagoService {
 
+    private static final Logger log = LoggerFactory.getLogger(PagoServiceImpl.class);
     @Autowired
     private PagoRepository pagoRepository;
+
+    private AlumnoClientRest alumnoClientRest;
+
+    private CursoClientRest cursoClientRest;
 
 
     @Override
@@ -28,6 +40,12 @@ public class PagoServiceImpl implements PagoService {
     }
     @Override
     public Pago save(Pago pago) {
+        try{
+            Alumno alumno = this.alumnoClientRest.findById(pago.getIdAlumno());
+            Curso curso = this.cursoClientRest.findById(pago.getIdCurso());
+        }catch (FeignException exception) {
+            throw new PagoException("El Alumno no existe o existen problemas con la asociacion");
+        }
         return this.pagoRepository.save(pago);
     }
 

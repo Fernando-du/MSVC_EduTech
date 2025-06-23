@@ -1,8 +1,6 @@
 package com.MSVC_EduTech.Curso.services;
 
 import com.MSVC_EduTech.Curso.clients.ProfesorClientRest;
-import com.MSVC_EduTech.Curso.dtos.CursoDTO;
-import com.MSVC_EduTech.Curso.dtos.ProfesorDTO;
 import com.MSVC_EduTech.Curso.exceptions.CursoException;
 import com.MSVC_EduTech.Curso.models.Profesor;
 import com.MSVC_EduTech.Curso.models.entities.Curso;
@@ -39,7 +37,13 @@ public class CursoServiceImpl implements CursoService {
 
     @Override
     public Curso save(Curso curso) {
+        try{
+            Profesor profesor = this.profesorClientRest.findById(curso.getIdProfesor());
+        }catch (FeignException exception) {
+            throw new CursoException("El profesor no existe o existen problemas con la asociacion");
+        }
         return cursoRepository.save(curso);
+
     }
 
     @Override
@@ -51,7 +55,6 @@ public class CursoServiceImpl implements CursoService {
             curso.setFechaInicio(cursoUpdate.getFechaInicio());
             curso.setFechaTermino(cursoUpdate.getFechaTermino());
             curso.setEstado(cursoUpdate.getEstado());
-            curso.setIdProfesor(cursoUpdate.getIdProfesor());
             return cursoRepository.save(curso);
         }).orElseThrow(
                 () -> new CursoException("El curso con id "+id+"no se encuentra en la base de datos")

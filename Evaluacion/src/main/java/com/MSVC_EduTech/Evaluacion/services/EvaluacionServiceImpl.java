@@ -1,8 +1,15 @@
 package com.MSVC_EduTech.Evaluacion.services;
 
+import com.MSVC_EduTech.Evaluacion.clients.CursoClientRest;
+import com.MSVC_EduTech.Evaluacion.clients.ProfesorClientRest;
 import com.MSVC_EduTech.Evaluacion.exceptions.EvaluacionException;
+import com.MSVC_EduTech.Evaluacion.models.Curso;
+import com.MSVC_EduTech.Evaluacion.models.Profesor;
 import com.MSVC_EduTech.Evaluacion.models.entities.Evaluacion;
 import com.MSVC_EduTech.Evaluacion.repositories.EvaluacionRepository;
+import feign.FeignException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +18,13 @@ import java.util.List;
 @Service
 public class EvaluacionServiceImpl implements EvaluacionService {
 
+    private static final Logger log = LoggerFactory.getLogger(EvaluacionServiceImpl.class);
     @Autowired
     private EvaluacionRepository evaluacionRepository;
+
+    private ProfesorClientRest profesorClientRest;
+
+    private CursoClientRest cursoClientRest;
 
     @Override
     public List<Evaluacion> findAll(){
@@ -27,6 +39,12 @@ public class EvaluacionServiceImpl implements EvaluacionService {
     }
     @Override
     public Evaluacion save(Evaluacion evaluacion) {
+        try{
+            Profesor profesor = this.profesorClientRest.findById(evaluacion.getIdProfesor());
+            Curso curso = this.cursoClientRest.findById(evaluacion.getIdCurso());
+        }catch (FeignException exception) {
+            throw new EvaluacionException("El profesor no existe o existen problemas con la asociacion");
+        }
         return evaluacionRepository.save(evaluacion);
     }
 
@@ -41,8 +59,6 @@ public class EvaluacionServiceImpl implements EvaluacionService {
             evaluacion.setFechaRealizacion(evaluacionUpdate.getFechaRealizacion());
             evaluacion.setTipo(evaluacionUpdate.getTipo());
             evaluacion.setNombre(evaluacionUpdate.getNombre());
-            evaluacion.setIdProfesor(evaluacionUpdate.getIdProfesor());
-            evaluacion.setIdCurso(evaluacionUpdate.getIdCurso());
             return evaluacionRepository.save(evaluacion);
         }).orElseThrow(
                 () -> new EvaluacionException("La evaluacion con id "+id+"no se encuentra en la base de datos")
