@@ -39,7 +39,7 @@ public class LoadDatabase implements CommandLineRunner {
                 alumno.setNombres(faker.name().firstName());
                 alumno.setApellidos(faker.name().lastName());
                 alumno.setCorreo(faker.internet().emailAddress());
-                alumno.setEstadoEstudiante("");
+                alumno.setEstadoEstudiante("Activo");
                 alumno.setFechaRegistro(LocalDate.now());
                 logger.info("El rut que agregaste es{}:", alumno.getRunAlumno());
 
