@@ -50,7 +50,7 @@ public class AlumnoController {
             @ApiResponse(responseCode = "200", description = "Obtencion por id correcta"),
             @ApiResponse(responseCode = "404", description = "Error cuando el alumno con cierto id no existe",
             content = @Content(
-                    mediaType = "applicacion/json", schema = @Schema(implementation = ErrorDTO.class)
+                    mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)
             ))
     })
     @Parameters(value = {
@@ -70,16 +70,16 @@ public class AlumnoController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Creacion Existosa"),
             @ApiResponse(responseCode = "404", description = "Algun elemento de msvc no se encuentra", content = @Content(
-                    mediaType = "applicacion/json", schema = @Schema(implementation = ErrorDTO.class)
+                    mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)
             )),
             @ApiResponse(responseCode = "409", description = "El elemento que intentas crear ya existe", content = @Content(
-                    mediaType = "applicacion/json", schema = @Schema(implementation = ErrorDTO.class)
+                    mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)
             ))
     })
     @io.swagger.v3.oas.annotations.parameters.RequestBody(
             description = "Estructura de datos que se me permite realizar la creación de un alumno",
             content = @Content(
-                    mediaType = "applicacion/json", schema = @Schema(implementation = ErrorDTO.class)
+                    mediaType = "application/json", schema = @Schema(implementation = ErrorDTO.class)
             )
     )
     public ResponseEntity<Alumno> create(@Valid @RequestBody Alumno alumno) {
@@ -106,7 +106,7 @@ public class AlumnoController {
                 .status(HttpStatus.NO_CONTENT)
                 .build();
     }
-    @PutMapping
+    @PutMapping("/{id}")
     @Operation(
             summary = "Endpoint para actualizar un alumno por ID",
             description = "Este endpoint permite actualizar los datos de un alumno existente mediante su ID"
