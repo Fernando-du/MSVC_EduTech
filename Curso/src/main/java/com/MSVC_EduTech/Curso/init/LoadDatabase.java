@@ -11,6 +11,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.Locale;
 
 @Profile("dev")
@@ -25,19 +26,18 @@ public abstract class LoadDatabase implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Faker faker = new Faker(Locale.of("es", "CL"));
-
         if (cursoRepository.count() == 0) {
             for (int i = 0; i < 1000; i++) {
                 Curso curso = new Curso();
                 curso.setDuracion(faker.number().numberBetween(1, 1000));
-                curso.setEstado();
+                curso.setEstado("Abierto");
                 curso.setNombre(faker.name().fullName());
                 curso.setSeccion(faker.lorem().sentence());
-                curso.setFechaInicio();
-                curso.setFechaTermino();
+                curso.setFechaInicio(LocalDate.now());
+                curso.setFechaTermino(LocalDate.now().plusDays(30));
                 curso.setIdProfesor(Long.valueOf(1L));
 
-
+                curso =  cursoRepository.save(curso);
             }
         }
     }

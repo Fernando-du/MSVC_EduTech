@@ -45,6 +45,7 @@ public class AlumnoServiceTest {
         alumnoPrueba.setApellidos("Rojas");
         alumnoPrueba.setFechaRegistro(LocalDate.now());
         alumnoPrueba.setEstadoEstudiante("Activo");
+        alumnoPrueba.setCorreo("peredor.sad@gmail.com");
         Faker faker = new Faker(Locale.of("es","CL"));
         for(int i=0;i<100;i++){
             Alumno alumno = new Alumno();
