@@ -2,6 +2,8 @@ package com.MSVC_EduTech.Alumno.controllers;
 
 import com.MSVC_EduTech.Alumno.models.Alumno;
 import com.MSVC_EduTech.Alumno.services.AlumnoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,12 +16,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/alumnos")
 @Validated
+@Tag( name = "Alumno API", description = "Aquí se generar todos los metodos CRUD para alumno")
 public class AlumnoController {
 
     @Autowired
     private AlumnoService alumnoService;
 
     @GetMapping
+    @Operation(summary = "Endpoint que obtiene todos los alumnos",
+               description = "Este endpoint devuelve en un List todo los alumnos que se encuentran en la base de datos")
     public ResponseEntity<List<Alumno>> findAll(){
         return ResponseEntity
                 .status(HttpStatus.OK)
